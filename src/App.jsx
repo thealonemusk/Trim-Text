@@ -1,20 +1,20 @@
+import Hero from "./components/Hero";
+import Demo from "./components/Demo";
 
-import Hero from './components/Hero';
-import Demo from './components/Demo';
-import './App.css'
-const App = ()  => {
+import "./App.css";
+
+const App = () => {
   return (
     <main>
       <div className='main'>
-        <div className='gradient'/>
+        <div className='gradient' />
       </div>
       <div className='app'>
-        <Hero/>
-        <Demo/>
+        <Hero />
+        <Demo />
       </div>
     </main>
-  )
-}
+  );
+};
 
-
-export default App
+export default App;
