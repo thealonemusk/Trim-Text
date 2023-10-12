@@ -16,7 +16,7 @@ Welcome to the **WebApp AI Summarizer** GitHub project! This project is a web ap
    - Make sure you have a modern web browser installed (Google Chrome, Mozilla Firefox, etc.).
    
 2. **Access the Application:**
-   - Visit the live application at [your-application-url](#) or clone this repository and open the `index.html` file in your browser.
+   - Visit the live application at [https://ai-summariser-thealonemusk.vercel.app/](#) or clone this repository and open the `index.html` file in your browser.
 
 3. **Input Text:**
    - Paste or type the article or text you want to summarize in the input text box.
