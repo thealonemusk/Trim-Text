@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import { copy, linkIcon, loader, tick } from "../assets";
 import { useLazyGetSummaryQuery } from "../services/article";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
 
 const Demo = () => {
   const [article, setArticle] = useState({
@@ -60,52 +62,63 @@ const Demo = () => {
   };
 
   return (
-    <section className='mt-16 w-full max-w-xl'>
+    <section className="mt-16 w-full max-w-xl">
       {/* Search */}
-      <div className='flex flex-col w-full gap-2'>
+      <div className="flex font-sans flex-col w-full gap-2">
         <form
-          className='relative flex justify-center items-center'
+          className="relative flex justify-center items-center"
           onSubmit={handleSubmit}
         >
           <img
             src={linkIcon}
-            alt='link-icon'
-            className='absolute left-0 my-2 ml-3 w-5'
+            alt="link-icon"
+            className="absolute z-10 left-0 my-2 ml-3 w-5"
           />
 
-          <input
-            type='url'
-            placeholder='Paste the article link'
+          <Input
+            placeholder="Paste the article link"
             value={article.url}
             onChange={(e) => setArticle({ ...article, url: e.target.value })}
             onKeyDown={handleKeyDown}
             required
-            className='url_input peer' // When you need to style an element based on the state of a sibling element, mark the sibling with the peer class, and use peer-* modifiers to style the target element
+            className="block w-full bg-transparent backdrop-blur-lg rounded-md border border-gray-400 py-2.5 pl-10 pr-12 text-sm shadow-lg font-medium text-white focus:border-white focus:outline-none focus:ring-0  focus-visible:ring-0 focus-visible:ring-offset-0"
+            style={{
+              backdropFilter: "blur(10px)",
+              backgroundColor: "rgba(255, 255, 255, 0.2)", // Adjust the rgba values for a lighter or darker frosted effect
+            }}
           />
-          <button
-            type='submit'
-            className='submit_btn peer-focus:border-gray-700 peer-focus:text-gray-700 '
+
+          <Button
+            type="submit"
+            variant="ghost"
+            className="submit_btn text-white hover:text-black hover:border-gray-700 absolute inset-y-0 -top-0.5 right-0 my-1.5 mr-1 hover:bg-slate-400 flex w-8 h-8 items-center justify-center rounded border border-gray-400 font-sans text-sm font-medium focus-visible:ring-0 focus-visible:ring-offset-0"
           >
-            <p>↵</p>
-          </button>
+            ↵
+          </Button>
         </form>
 
         {/* Browse History */}
-        <div className='flex flex-col gap-1 max-h-60 overflow-y-auto'>
+        <div className="flex bg-transparent flex-col gap-2 max-h-60 overflow-y-auto">
           {allArticles.reverse().map((item, index) => (
             <div
               key={`link-${index}`}
               onClick={() => setArticle(item)}
-              className='link_card'
+              className="flex items-center bg-neutral-800 p-3 rounded-lg hover:bg-gray-700 transition-colors duration-200 cursor-pointer"
             >
-              <div className='copy_btn' onClick={() => handleCopy(item.url)}>
+              <div
+                className="copy_btn mr-3 bg-gray-700 hover:bg-gray-600 transition-colors duration-200"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleCopy(item.url);
+                }}
+              >
                 <img
                   src={copied === item.url ? tick : copy}
                   alt={copied === item.url ? "tick_icon" : "copy_icon"}
-                  className='w-[40%] h-[40%] object-contain'
+                  className="w-[40%] h-[40%] object-contain"
                 />
               </div>
-              <p className='flex-1 font-satoshi text-blue-700 font-medium text-sm truncate'>
+              <p className="flex-1 font-satoshi text-gray-200 font-medium text-sm truncate">
                 {item.url}
               </p>
             </div>
@@ -114,27 +127,29 @@ const Demo = () => {
       </div>
 
       {/* Display Result */}
-      <div className='my-10 max-w-full flex justify-center items-center'>
+      <div className="my-10 max-w-full flex justify-center  items-center">
         {isFetching ? (
-          <img src={loader} alt='loader' className='w-20 h-20 object-contain' />
+          <img src={loader} alt="loader" className="w-20 h-20 object-contain" />
         ) : error ? (
-          <p className='font-inter font-bold text-black text-center'>
-            Well, that wasn't supposed to happen...
+          <p className="text-white text-center">
+            Well, that wasn't supposed to happen... Please try again later
             <br />
-            <span className='font-satoshi font-normal text-gray-700'>
+            <span className="font-satoshi font-normal text-gray-300">
               {error?.data?.error}
             </span>
           </p>
         ) : (
           article.summary && (
-            <div className='flex flex-col gap-3'>
-              <h2 className='font-satoshi font-bold text-gray-600 text-xl'>
-                Article <span className='blue_gradient'>Summary</span>
+            <div className="flex border  border-gray-500 flex-col gap-3 rounded-xl p-4 max-w-2xl w-full">
+              <h2 className="font-satoshi font-bold text-gray-200 text-2xl border-b border-gray-700 pb-2">
+                Article Summary
               </h2>
-              <div className='summary_box'>
-                <p className='font-inter font-medium text-sm text-gray-700'>
-                  {article.summary}
-                </p>
+              <div className="markdown-content text-white">
+                {article.summary.split("\n").map((paragraph, index) => (
+                  <p key={index} className="mb-4">
+                    {paragraph}
+                  </p>
+                ))}
               </div>
             </div>
           )

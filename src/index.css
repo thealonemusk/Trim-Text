@@ -12,6 +12,16 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+@font-face {
+  font-family: 'Geist Sans';
+  src: url('/path/to/geist-sans.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-sans {
+  font-family: 'Geist Sans', sans-serif;
+}
 
 body {
   margin: 0;
@@ -21,7 +31,6 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #f9f9f9;
-  font-family: "Times New Roman", serif;
 }
 
 h1,
@@ -48,7 +57,6 @@ button {
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
   background-color: #ffffff;
   cursor: pointer;
   transition: background-color 0.25s;
