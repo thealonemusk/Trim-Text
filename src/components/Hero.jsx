@@ -21,7 +21,7 @@ const Hero = () => {
 
       <h1 className=" mt-5 text-5xl font-extrabold  sm:text-6xl text-center text-[#5437D2]/80  leading-loose ">
         Summarize Articles with <br className="max-md:hidden" />
-        <span className="orange_gradient ">OpenAI GPT-4</span>
+        <span className="orange_gradient ">TrimText</span>
       </h1>
       <div className="max-w-xl text-center mt-8 text-xl font-light text-gray-400 font-sans">
         Simplify your reading with Trim-Text, an open-source article summarizer
