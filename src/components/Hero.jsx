@@ -8,15 +8,15 @@ const Hero = () => {
       <nav className="flex justify-between items-center w-full mb-10 pt-6">
         <img src={logo} alt="trimtext_logo" className="w-36 object-contain" />
 
-        <button
+        {/* <button
           type="button"
           onClick={() =>
-            window.open("https://github.com/thealonemusk/Trim-Text", "_blank")
+            window.open("https://github.com/Gextro/Trim-Text", "_blank")
           }
           className="text-white border border-gray-500 hover:bg-gray-900 px-3 py-2 rounded-md"
         >
           GitHub
-        </button>
+        </button> */}
       </nav>
 
       <h1 className=" mt-5 text-5xl font-extrabold  sm:text-6xl text-center text-[#5437D2]/80  leading-loose ">
