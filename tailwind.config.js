@@ -57,6 +57,12 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      ringColor: {
+        DEFAULT: "hsl(var(--ring))",
+      },
+      ringOffsetColor: {
+        DEFAULT: "hsl(var(--background))",
+      },
       fontFamily: {
         sans: ['GeistSans', 'sans-serif'],
         mono: ['GeistMono', 'monospace'],
